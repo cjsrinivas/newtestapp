@@ -4,6 +4,10 @@ phases:
   install:
     commands:
       - yum install zip -y
+  build:
+    commanas:
+      - echo `pwd`
+      - ls -R *
   post_build:
     commands:
       - echo Post-Build completed on `date`
