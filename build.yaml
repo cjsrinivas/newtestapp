@@ -17,5 +17,5 @@ phases:
       #- aws s3 cp lambda.zip s3://web-dev-lambda-codebuild-s3/
 artifacts:
   files:
-    - '**/*'
+    - 'lambda.zip'
   name: lambda.zip
