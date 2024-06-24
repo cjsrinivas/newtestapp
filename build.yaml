@@ -6,7 +6,7 @@ phases:
       - yum install zip -y
   post_build:
     commands:
-      - echo Post-Build completed on 'date"
+      - echo Post-Build completed on `date`
       #Zip File
       - zip -r lambda.zip helloworld.py
       #Copy to S3
