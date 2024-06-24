@@ -8,6 +8,7 @@ phases:
     commands:
       - echo Post-Build completed on `date`
       #Zip File
+      - cd ${CODEBUILD SRC DIR}
       - zip -r lambda.zip helloworld.py
       #Copy to S3
       - aws s3 cp lambda.zip s3://web-dev-lambda-codebuild-s3/
