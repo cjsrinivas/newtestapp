@@ -8,14 +8,16 @@ phases:
     commands:
       - echo `pwd`
       - ls -R *
+      - mkdir build
   post_build:
     commands:
       - echo Post-Build completed on `date`
       #Zip File
+      - cd build
       - zip -r lambda.zip helloworld.py
       #Copy to S3
       #- aws s3 cp lambda.zip s3://web-dev-lambda-codebuild-s3/
 artifacts:
   files:
-    - 'lambda.zip'
+    - '/build/*'
   name: lambda.zip
