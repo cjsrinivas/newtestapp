@@ -5,7 +5,7 @@ phases:
     commands:
       - yum install zip -y
   build:
-    commanas:
+    commands:
       - echo `pwd`
       - ls -R *
   post_build:
