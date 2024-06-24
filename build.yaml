@@ -3,7 +3,7 @@ version: 0.1
 phases:
   install:
     commands:
-      - yum install zip -y build:
+      - yum install zip -y
   post_build:
     commands:
       - echo Post-Build completed on 'date"
