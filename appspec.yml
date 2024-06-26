@@ -1,1 +1,9 @@
-print("This is the updated Hello World!")
+version: 0.1
+Resources:
+  - helloworldLambda:
+    Type: AWS::Lambda::Function
+    Properties:
+      Name: "HelloWorld"
+      Alias: "test"
+      CurrentVersion: "1"
+      TargetVersion: "2"
