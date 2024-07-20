@@ -1,8 +1,9 @@
 version: 0.0
 Resources:
-  - helloworldLambda:
-    Type: AWS::Lambda::Function
-    Properties:
-      Name: "HelloWorld"
-      CurrentVersion: "1"
-      TargetVersion: "2"
+  - myLambdaFunction:
+      Type: AWS::Lambda::Function
+      Properties:
+        Name: "HelloWorld"
+        Alias: "production"
+        CurrentVersion: "1"
+        TargetVersion: "2"
