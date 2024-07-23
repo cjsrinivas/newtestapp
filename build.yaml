@@ -12,7 +12,7 @@ phases:
     commands:
       - echo Post-Build completed on `date`
       #Zip File
-      - zip -r ./build/lambda.zip helloworld.py
+      #- zip -r ./build/lambda.zip helloworld.py
       - ls -R *
       #Copy to S3
       #- aws s3 cp lambda.zip s3://web-dev-lambda-codebuild-s3/
