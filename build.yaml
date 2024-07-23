@@ -15,6 +15,7 @@ phases:
       #- zip -r ./build/lambda.zip helloworld.py
       - ls -R *
       - cp appspec.yml build.yaml helloworld.py ./build
+      #Adding comment to trigger build
       #Copy to S3
       #- aws s3 cp lambda.zip s3://web-dev-lambda-codebuild-s3/
 artifacts:
