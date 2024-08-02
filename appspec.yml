@@ -5,5 +5,5 @@ Resources:
       Properties:
         Name: "helloworld"
         Alias: "production"
-        CurrentVersion: "4"
-        TargetVersion: "5"
+        CurrentVersion: "3"
+        TargetVersion: "4"
