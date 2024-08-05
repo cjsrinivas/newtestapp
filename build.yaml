@@ -7,19 +7,20 @@ phases:
   build:
     commands:
       - echo `pwd`
-      - mkdir build
+      #- mkdir build
   post_build:
     commands:
       - echo Post-Build completed on `date`
       #Zip File
-      #- zip -r ./build/lambda.zip helloworld.py
+      - zip helloworld.zip helloworld.py
       - ls -R *
-      - cp appspec.yml build.yaml helloworld.py ./build
+      #- cp appspec.yml build.yaml helloworld.py ./build
       #Adding comment to trigger build again, hoping this works, another try
       #Copy to S3
       #- aws s3 cp lambda.zip s3://web-dev-lambda-codebuild-s3/
 artifacts:
   files:
-    - 'build/*'
+    #- 'build/*'
+    - helloworld.zip
     - appspec.yml
   name: /
