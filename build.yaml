@@ -41,7 +41,7 @@ phases:
   #   # - pip install --upgrade pip
   build:
     commands:
-      - mkdir -r lambda/helloworld
+      - mkdir -R lambda/helloworld
       - cp helloworld.py ./lambda/helloworld/
       - echo Updating Lambda functions
       - cd lambda
