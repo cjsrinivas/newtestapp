@@ -41,7 +41,7 @@ phases:
      # - pip install --upgrade pip
   build:
     commands:
-      - if test -f ${SourceFolder}/handler.py; then
+      - if test -f ${SourceFolder}/helloworld.py; then
           echo "------------------------------------";
           echo $PWD;
           echo "------------------------------------";
