@@ -1,26 +1,61 @@
-version: 0.1
+#version: 0.1
+#
+#phases:
+#  install:
+#    commands:
+#      - yum install zip -y
+#  build:
+#    commands:
+#      - echo `pwd`
+#      #- mkdir build
+#  post_build:
+#    commands:
+#      - echo Post-Build completed on `date`
+#      #Zip File
+#      - zip helloworld.zip helloworld.py
+#      - ls -R *
+#      #- cp appspec.yml build.yaml helloworld.py ./build
+#      #Adding comment to trigger build again, hoping this works, another try
+#      #Copy to S3
+#      #- aws s3 cp lambda.zip s3://web-dev-lambda-codebuild-s3/
+#artifacts:
+#  files:
+#    #- 'build/*'
+#    - helloworld.zip
+#    - appspec.yml
+#  name: /
 
+---
+version: '0.1'
 phases:
   install:
+    runtime-versions:
+      python: 3.9
+  pre_build:
     commands:
-      - yum install zip -y
+      - echo start lambda function build ${SourceFolder}
+      - build_root=$CODEBUILD_SRC_DIR/src/lambda
+      - cd $build_root
+      - file=${SourceFolder}/helloworld.py;
+      - artifact=${build_root}/${file};
+     # - pip install --upgrade pip
   build:
     commands:
-      - echo `pwd`
-      #- mkdir build
-  post_build:
-    commands:
-      - echo Post-Build completed on `date`
-      #Zip File
-      - zip helloworld.zip helloworld.py
-      - ls -R *
-      #- cp appspec.yml build.yaml helloworld.py ./build
-      #Adding comment to trigger build again, hoping this works, another try
-      #Copy to S3
-      #- aws s3 cp lambda.zip s3://web-dev-lambda-codebuild-s3/
+      - if test -f ${SourceFolder}/handler.py; then
+          echo "------------------------------------";
+          echo $PWD;
+          echo "------------------------------------";
+          ls;
+          echo "------------------------------------";
+          echo ${SourceFolder} packaging to be done;
+          echo "------------------------------------";
+          echo artifact is ${artifact};
+          echo "------------------------------------";
+          ls;
+        fi;
+      - echo "------------------------------------";
+      - echo done
 artifacts:
   files:
-    #- 'build/*'
-    - helloworld.zip
-    - appspec.yml
-  name: /
+    - $artifact
+  discard-paths: yes
