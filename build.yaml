@@ -45,7 +45,7 @@ phases:
       - cp helloworld.py ./lambda/helloworld/
       - echo Updating Lambda functions
       - cd lambda
-      - for f in */ ; do cd "$f"; zip -r ../$f.zip *; aws lambda update-function-code --function-name $f --zip-file $f.zip; cd ..; done
+      - for f in */ ; do cd "$f"; zip -r ../$f.zip *; aws lambda update-function-code --function-name $f --zip-file fileb://$f.zip; cd ..; done
       
    #   - if test -f ${SourceFolder}/helloworld.py; then
    #       echo "------------------------------------";
