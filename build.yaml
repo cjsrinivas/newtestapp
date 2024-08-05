@@ -43,7 +43,7 @@ phases:
     commands:
       - mkdir -p lambda/helloworld
       - cp helloworld.py ./lambda/helloworld/
-      - echo Updating Lambda functions
+      - echo Updating Lambda functions one more time
       - cd lambda
       - for f in *; do if [ -d "$f" ]; then cd "$f"; zip -r $f.zip *; aws lambda update-function-code --function-name $f --zip-file fileb://$f.zip; cd ..; fi; done
       
