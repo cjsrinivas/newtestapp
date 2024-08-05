@@ -31,31 +31,37 @@ phases:
   #install:
   #  runtime-versions:
   #    python: 3.9
-  pre_build:
-    commands:
-      - echo start lambda function build ${SourceFolder}
-      - build_root=$CODEBUILD_SRC_DIR/src/lambda
-      - cd $build_root
-      - file=${SourceFolder}/helloworld.py;
-      - artifact=${build_root}/${file};
-     # - pip install --upgrade pip
+  #pre_build:
+  #  commands:
+  #    - echo start lambda function build ${SourceFolder}
+  #    - build_root=$CODEBUILD_SRC_DIR/src/lambda
+  #    - cd $build_root
+  #    - file=${SourceFolder}/helloworld.py;
+  #    - artifact=${build_root}/${file};
+  #   # - pip install --upgrade pip
   build:
     commands:
-      - if test -f ${SourceFolder}/helloworld.py; then
-          echo "------------------------------------";
-          echo $PWD;
-          echo "------------------------------------";
-          ls;
-          echo "------------------------------------";
-          echo ${SourceFolder} packaging to be done;
-          echo "------------------------------------";
-          echo artifact is ${artifact};
-          echo "------------------------------------";
-          ls;
-        fi;
-      - echo "------------------------------------";
-      - echo done
+      - mkdir -r lambda/helloworld
+      - cp helloworld.py ./lambda/helloworld/
+      - echo Updating Lambda functions
+      - cd lambda
+      - for f in */ ; do cd "$f"; zip -r ../$f.zip *; aws lambda update-function-code --function-name $f --zip-file fileb://$f.zip; cd ..;
+      
+   #   - if test -f ${SourceFolder}/helloworld.py; then
+   #       echo "------------------------------------";
+   #       echo $PWD;
+   #       echo "------------------------------------";
+   #       ls;
+   #       echo "------------------------------------";
+   #       echo ${SourceFolder} packaging to be done;
+   #       echo "------------------------------------";
+   #       echo artifact is ${artifact};
+   #       echo "------------------------------------";
+   #       ls;
+   #     fi;
+   #   - echo "------------------------------------";
+   #   - echo done
 artifacts:
   files:
-    - $artifact
+    - appspec.yml
   discard-paths: yes
